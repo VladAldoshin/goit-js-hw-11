@@ -1,8 +1,11 @@
 import { Notify } from 'notiflix';
 import {createMarcup} from './js/createMarcup';
+import {markupData} from './js/createMarcup';
 const axios = require('axios').default;
 import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
+
+
 
 let searchQueryResult = '';
 let q = '';
@@ -20,10 +23,7 @@ page: '1',
 per_page: "40",
 };
     
-const markupData = {
-    markup: "",
-    htmlCode: "",
-};
+
 
 const form = document.querySelector('.search-form');
 const gallerySelector = document.querySelector('.gallery');
@@ -37,10 +37,8 @@ searchQueryResult = searchQuery.value;
 if (searchQueryResult === '') {
         gallerySelector.innerHTML = "";
         btnLoadMore.classList.remove("is-visible");
-        
         return Notify.failure('Sorry, there are no images matching your search query. Please try again.');
-            
-    };
+};
 
 if (searchQueryResult !== q) {
         pageN = 1;
@@ -116,26 +114,3 @@ async function fetchImages(searchQueryResult) {
   return results;
   };
 
-  // async function createMarcup(results) {
-  //   const { hits } = results;
-  //   markupData.markup = hits.map((hit) =>
-  //           `<a href="${hit.largeImageURL}"><div class="photo-card">
-  //           <img src="${hit.webformatURL}" alt="${hit.tags}" loading="lazy"
-  //             class="img-item" />
-  //           <div class="info">
-  //       <p class="info-item">
-  //         <b>Likes:</b>${hit.likes}
-  //       </p>
-  //       <p class="info-item">
-  //         <b>Views:</b>${hit.views}
-  //       </p>
-  //       <p class="info-item">
-  //         <b>Comments:</b>${hit.comments}
-  //       </p>
-  //       <p class="info-item">
-  //         <b>Downloads:</b>${hit.downloads}
-  //       </p>
-  //     </div>
-  //   </div></a>`).join("");
-  //       return markupData.markup;
-  //   };

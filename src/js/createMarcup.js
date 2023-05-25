@@ -1,3 +1,9 @@
+export const markupData = {
+    markup: "",
+    htmlCode: "",
+};
+
+
 export async function createMarcup(results) {
     const { hits } = results;
     markupData.markup = hits.map((hit) =>
